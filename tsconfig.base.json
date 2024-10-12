@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "declaration": false,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@components/forms": ["components/forms/src/index.ts"],
+      "@components/hooks": ["libs/hooks/src/index.ts"],
+      "@components/select": ["components/select/src/index.ts"],
+      "@components/utils": ["components/utils/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "tmp"]
+}

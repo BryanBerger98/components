@@ -1,0 +1,36 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "javascript.preferences.quoteStyle": "single"
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true,
+    "javascript.autoClosingTags": true,
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.preferences.jsxAttributeCompletionStyle": "none",
+    "javascript.preferences.importModuleSpecifier": "shortest",
+    "javascript.preferences.importModuleSpecifierEnding": "minimal",
+    "javascript.preferences.renameMatchingJsxTags": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "typescript.preferences.quoteStyle": "single"
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "typescript.autoClosingTags": true,
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.preferences.jsxAttributeCompletionStyle": "none",
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "typescript.preferences.importModuleSpecifierEnding": "minimal",
+    "typescript.preferences.renameMatchingJsxTags": true
+  }
+}
