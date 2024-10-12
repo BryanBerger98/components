@@ -23,7 +23,7 @@ const MultipleSelect = () => {
       <h2 className="text-lg font-medium">Multiple select</h2>
       <MultiSelect aria-label="Countries">
         <MultiSelectTrigger className="w-96">
-          <MultiSelectValue placeholder="Select countries" />
+          <MultiSelectValue placeholder="Select countries" valuesSeparator="," />
         </MultiSelectTrigger>
         <MultiSelectContent>
           {options.map((option) => (

@@ -8,6 +8,7 @@ import {
   ComponentPropsWithoutRef,
   Dispatch,
   ElementRef,
+  Fragment,
   HTMLProps,
   MouseEventHandler,
   ReactNode,
@@ -49,6 +50,7 @@ export const MultiSelect = ({ defaultValues = [], onValuesChange, ...props }: Mu
     </MultiSelectContext.Provider>
   );
 };
+MultiSelect.displayName = 'MultiSelect';
 
 export const MultiSelectTrigger = forwardRef<
   ElementRef<typeof PopoverTrigger>,
@@ -69,6 +71,7 @@ export const MultiSelectTrigger = forwardRef<
     <ChevronDown className="h-4 w-4 text-muted-foreground absolute top-1/2 transform -translate-y-1/2 right-2" />
   </PopoverTrigger>
 ));
+MultiSelectTrigger.displayName = 'MultiSelectTrigger';
 
 export const MultiSelectContent = forwardRef<
   ElementRef<typeof PopoverContent>,
@@ -81,6 +84,7 @@ export const MultiSelectContent = forwardRef<
     ref={ref}
   />
 ));
+MultiSelectContent.displayName = 'MultiSelectContent';
 
 type MultiSelectItemProps = Omit<ButtonProps, 'value' | 'type' | 'role' | 'variant'> & {
   value?: MultiSelectValue;
@@ -158,12 +162,14 @@ export const MultiSelectItem = forwardRef<HTMLButtonElement, MultiSelectItemProp
     );
   },
 );
+MultiSelectItem.displayName = 'MultiSelectItem';
 
 type MultiSelectValueProps = HTMLProps<HTMLDivElement> & {
   placeholder?: string;
+  valuesSeparator?: string;
 };
 export const MultiSelectValue = forwardRef<HTMLDivElement, MultiSelectValueProps>(
-  ({ className, children, placeholder, ...props }, ref) => {
+  ({ className, children, placeholder, valuesSeparator = ', ', ...props }, ref) => {
     const context = useContext(MultiSelectContext);
 
     if (!context) {
@@ -174,15 +180,25 @@ export const MultiSelectValue = forwardRef<HTMLDivElement, MultiSelectValueProps
 
     return (
       <div
-        className={cn('text-left w-full text-nowrap overflow-hidden truncate text-ellipsis', className)}
+        className={cn(
+          'text-left flex items-center w-full text-nowrap overflow-hidden truncate text-ellipsis',
+          className,
+        )}
         {...props}
         ref={ref}
       >
         {values?.length ? (
           options
             .filter((option) => values.includes(option.value))
-            .map((option) => option.label)
-            .join(', ')
+            .map((option, index) => {
+              const separator = index === values.length - 1 ? '' : valuesSeparator;
+
+              return (
+                <Fragment key={option.value}>
+                  {typeof option.label === 'string' ? `${option.label}${`${separator} ` ?? ''}` : option.label}
+                </Fragment>
+              );
+            })
         ) : placeholder ? (
           <span className="text-muted-foreground">{placeholder}</span>
         ) : null}
@@ -190,3 +206,4 @@ export const MultiSelectValue = forwardRef<HTMLDivElement, MultiSelectValueProps
     );
   },
 );
+MultiSelectValue.displayName = 'MultiSelectValue';
